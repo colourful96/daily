@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>制作黑白图片</title>
+    </head>
+    <body>
+        <div>
+            <img src="./images/liao.jpg" alt="" />
+            <button onclick="change()">转换</button>
+            <canvas id="canvas" height="117"></canvas>
+        </div>
+        <script>
+            // 画布中的1个图像是由多个像素点组成，每个像素点拥有4个数据：红、绿、蓝、alpha
+            // 把一个图像变成黑白，只需要将图像的每个像素点设置成为红绿蓝的平均数即可
+            function change() {
+                const img = document.querySelector("img");
+                const ctx = document.getElementById("canvas").getContext("2d");
+                ctx.drawImage(img, 0, 0);
+                const imageData = ctx.getImageData(0, 0, img.width, img.height);
+                for (let i = 0; i < imageData.data.length; i += 4) {
+                    const r = imageData.data[i];
+                    const g = imageData.data[i + 1];
+                    const b = imageData.data[i + 2];
+                    const avg = Math.ceil((r + g + b) / 3);
+                    imageData.data[i] = imageData.data[i + 1] = imageData.data[i + 2] = avg;
+                }
+                ctx.putImageData(imageData, 0, 0);
+            }
+        </script>
+    </body>
+</html>
