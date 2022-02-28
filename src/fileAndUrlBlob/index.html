@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="file" accept="video/*" onchange="handleVideo(this)">
+        <video width="500" height="500" controls></video>
+        <img id="img" alt="">
+    </div>
+    <script>
+        // 选择文件 同样适用于图片
+        function handleVideo(e){
+            const video = document.querySelector('video');
+            const file = e.files[0];
+            const blob = URL.createObjectURL(file);
+            video.src = blob;
+            video.onload=function(){
+                URL.revokeObjectURL(this.src);
+            }
+        }
+
+        function ajax(url,cb){
+            const xhr = new XMLHttpRequest();
+            xhr.open('get',url);
+            xhr.responseType = 'blob';
+            xhr.onload=function(){
+                cb(xhr.response);
+            }
+            xhr.send();
+        }
+        // 网络请求  同样适用于视频
+        ajax('https://img0.baidu.com/it/u=857510153,4267238650&fm=253&fmt=auto&app=120&f=JPEG?w=1200&h=675',function(resp){
+            const img = document.getElementById('img');
+            const blob = URL.createObjectURL(resp);
+            img.src = blob;
+            img.onload=function(){
+                URL.revokeObjectURL(this.src);
+            }  
+        })
+    </script>
+</body>
+</html>
