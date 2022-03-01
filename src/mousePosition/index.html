@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标从哪个方向进入元素</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 300px;
+            background-color: orange;
+            margin: 200px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box');
+
+        function bindEvent() {
+            box.onmouseenter = function (e) {
+                get(e, 'in');
+            }
+            box.onmouseleave = function (e) {
+                get(e, 'out');
+            }
+        }
+
+        function get(event, state) {
+            var d = getDar(event);
+            var dir = '';
+            switch (d) {
+                case 0:
+                    dir = '-top';
+                    break;
+                case 1:
+                    dir = '-right';
+                    break;
+                case 2:
+                    dir = '-bottom';
+                    break;
+                case 3:
+                    dir = '-left';
+                    break;
+            }
+            console.log(state + dir);
+        }
+
+        function getDar(event) {
+            var d;
+            var w = box.offsetWidth;
+            var h = box.offsetHeight;
+            var l = box.offsetLeft;
+            var t = box.offsetTop;
+            var x = (event.pageX - l - (w / 2)) * (w > h ? (h / w) : 1);
+            var y = (event.pageY - t - (h / 2)) * (h > w ? (w / h) : 1);
+            d = Math.round((((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90) + 3) % 4;
+            return d;
+        }
+        bindEvent()
+    </script>
+</body>
+
+</html>
