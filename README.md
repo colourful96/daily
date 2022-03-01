@@ -5,3 +5,5 @@
 
 ## [地址转换为blob](src/fileAndUrlBlob/index.html)
 - URL.createObjectURL URL.revokeObjectURL blob
+
+## [高斯模糊](src/gaussBlur/index.html)
