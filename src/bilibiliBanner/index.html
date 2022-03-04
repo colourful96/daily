@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- 
+        1.多图层组合的静态页面
+        2.不同图层具有不同的清晰度
+            第六张图片:从初始位置鼠标右移,opacity从0增加(不一定到1,这与初始位置在屏幕的位置有关),左移保持0不变
+            第九、十张图片:从初始位置鼠标左移移,opacity从0增加(不一定到1,这与初始位置在屏幕的位置有关),右移保持0不变
+            左移offset大于0,右移offset小于0
+        3.鼠标移动导致清晰度变化(渐变效果)
+        4.鼠标移动导致左右跟随
+        5.鼠标离开,效果还原
+     -->
+
+    <div class="bili-banner">
+        <div class="animateds-banner">
+            <div class="layer">
+                <img src="img/1.png" height="184" data-height="360" data-width="9666" width="4957"  />
+            </div>
+            <div class="layer">
+                <img src="img/2.png" height="184" data-height="360" data-width="9666" width="4957"  />
+            </div>
+            <div class="layer">
+                <img src="img/3.png" height="166" data-height="360" data-width="3523" width="1626" />
+            </div>
+            <div class="layer">
+                <img src="img/4.png" height="180" data-height="360" data-width="2938" width="1476"  />
+            </div>
+            <div class="layer">
+                <img src="img/5.png" height="64" data-height="139" data-width="556" width="256"  />
+            </div>
+            <div class="layer">
+                <img src="img/6.png" height="86" data-height="302" data-width="734" width="210"  />
+            </div>
+
+            <div class="layer">
+                <img src="img/7.png" height="129" data-height="180" data-width="1757" width="1261"  />
+            </div>
+            <div class="layer">
+                <img src="img/8.png" height="83" data-height="116" data-width="1757" width="1261"  />
+            </div>
+            <div class="layer">
+                <img src="img/9.png" height="141" data-height="346" data-width="497" width="203"  />
+            </div>
+            <div class="layer">
+                <img src="img/10.png" height="105" data-height="256" data-width="146" width="59"  />
+            </div>
+            <div class="layer">
+                <img src="img/11.png" height="117" data-height="254" data-width="602" width="277" />
+            </div>
+            <div class="layer">
+                <img src="img/12.png" height="184" data-height="360" data-width="4277" width="2193"  />
+            </div>
+            <div class="layer">
+                <img src="img/13.png" height="150" data-height="327" data-width="933" width="430"  />
+            </div>
+            <div class="layer">
+                <img src="img/14.png" height="217" data-height="353" data-width="740" width="455"  />
+            </div>
+            <div class="layer">
+                <img src="img/15.png" height="184" data-height="360" data-width="1916" width="982"  />
+            </div>
+
+            <!-- <canvas width="1677" height="159" style="position: absolute; top: 0px; left: 0px; "></canvas> -->
+        </div>
+    </div>
+    <script>
+    </script>
+    <script src="js/index.js"></script>
+</body>
+</html>
