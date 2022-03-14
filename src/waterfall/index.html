@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>瀑布流</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            .wrapper {
+                width: 80%;
+                min-width: 990px;
+                margin: 0 auto;
+                border: 1px solid black;
+                text-align: center;
+            }
+            .wrapper ul {
+                display: inline-block;
+            }
+            .wrapper ul li {
+                float: left;
+            }
+            .wrapper ul li .item {
+                width: 200px;
+                padding: 10px;
+                border: 1px solid black;
+                margin: 0 5px 10px;
+            }
+            .wrapper ul li .imgBox {
+                width: 200px;
+                overflow: hidden;
+            }
+            .wrapper ul li .item img {
+                width: 200px;
+            }
+            .wrapper ul li p {
+                text-align: left;
+            }
+            .wrapper .loading {
+                font-size: 30px;
+                font-weight: bold;
+                color: #000;
+                /* display: none; */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <ul>
+                <li>
+                    <div class="item">
+                        <div class="imgBox">
+                            <img src="./image/0.png" alt="" />
+                        </div>
+                        <p>title</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="imgBox">
+                            <img src="./image/1.png" alt="" />
+                        </div>
+                        <p>title</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="imgBox">
+                            <img src="./image/2.png" alt="" />
+                        </div>
+                        <p>title</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="imgBox">
+                            <img src="./image/3.png" alt="" />
+                        </div>
+                        <p>title</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="loading">loading...</div>
+        </div>
+        <script src="../js/jquery.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>
