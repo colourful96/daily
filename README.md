@@ -12,4 +12,6 @@
 
 ## [哔哩哔哩banner](src/bilibiliBanner/index.html)
 
-## [瀑布流](src/waterfall//index.html)
+## [瀑布流](src/waterfall/index.html)
+
+## [3D旋转立方体](src/3d旋转立方体/index.html)

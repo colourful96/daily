@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3d旋转立方体</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="cube">
+        <!-- 外面六个面 -->
+        <div class="out-front">前面</div>
+        <div class="out-back">后面</div>
+        <div class="out-left">左面</div>
+        <div class="out-right">右面</div>
+        <div class="out-top">上面</div>
+        <div class="out-bottom">下面</div>
+<!--        筛子六个面 面上有点 -->
+        <span class="in-front">
+            <span class="point"></span>
+        </span>
+        <span class="in-back">
+            <span class="point"></span>
+            <span class="point pitB2"></span>
+            <span class="point pitB3"></span>
+        </span>
+        <span class="in-left">
+            <span class="point"></span>
+            <span class="point pitL2"></span>
+        </span>
+        <span class="in-right">
+             <span class="point"></span>
+                <span class="point"></span>
+                <span class="point"></span>
+                <span class="point"></span>
+        </span>
+        <span class="in-top">
+              <span class="pitT1">
+                    <span class="point"></span>
+                    <span class="point"></span>
+                </span>
+                <span class="pitT2">
+                    <span class="point"></span>
+                </span>
+                <span class="pitT3">
+                    <span class="point"></span>
+                    <span class="point"></span>
+                </span>
+        </span>
+        <span class="in-bottom">
+               <span class="point"></span>
+                <span class="point"></span>
+                <span class="point"></span>
+                <span class="point"></span>
+                <span class="point"></span>
+                <span class="point"></span>
+        </span>
+    </div>
+</div>
+</body>
+</html>
