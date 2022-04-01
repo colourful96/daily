@@ -15,3 +15,5 @@
 ## [瀑布流](src/waterfall/index.html)
 
 ## [3D旋转立方体](src/3d旋转立方体/index.html)
+
+## [图片放大镜](src/图片放大镜/index.html)
