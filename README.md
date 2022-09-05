@@ -19,3 +19,5 @@
 8. [图片放大镜](src/图片放大镜/index.html)
 
 9. [贪吃蛇](src/贪吃蛇/index.html)
+
+10. [3D旋转图片](src/3d%E6%97%8B%E8%BD%AC%E5%9B%BE%E7%89%87/index.html)
