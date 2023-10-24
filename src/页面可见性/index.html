@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面可见性</title>
+</head>
+<body>
+<script>
+    document.addEventListener('visibilitychange',function (){
+        if(document.visibilityState === 'hidden'){
+            document.title = '页面不可见';
+        }
+        if(document.visibilityState === 'visible'){
+            document.title = '页面可见性';
+        }
+    })
+</script>
+</body>
+</html>

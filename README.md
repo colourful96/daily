@@ -25,3 +25,4 @@
 10. [3D 旋转图片](src/3d%E6%97%8B%E8%BD%AC%E5%9B%BE%E7%89%87/index.html)
 
 11. [表单验证-策略模式](src/策略模式-表单验证/index.html)
+12. [页面可见性](src/页面可见性/index.html)
