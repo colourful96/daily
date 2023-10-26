@@ -26,3 +26,4 @@
 
 11. [表单验证-策略模式](src/策略模式-表单验证/index.html)
 12. [页面可见性](src/页面可见性/index.html)
+13. [发布订阅模式](src/发布订阅模式/observer.js)
