@@ -18,7 +18,7 @@
         <h1>本地图片</h1>
         <img src="./1.png" alt="">
         <h1>远程图片</h1>
-        <img src="https://cn.bing.com/images/search?q=%E5%9B%BE%E7%89%87&FORM=IQFRBA&id=3818C0A36E353844880BB3B0E3AF1C80A1CA0FB1" alt="">
+        <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.K-4RqDC6zFrpAG31ayDDOgHaHa?rs=1&pid=ImgDetMain" alt="" crossOrigin="anonymous">
     </div>
     <!-- 截图的照片 -->
     <img id="preview" src="" alt="">
@@ -40,6 +40,18 @@
                 name:'销量',
                 type:'bar',	//图表的类型
                 data:[5,20,36,10,19,24]	//图表的数据
+            },
+            // 没有设置cors，截图时会报错
+            graphic: {
+                type: 'image',
+                "left": 60,
+                "top":"center",
+                "style": {
+                    image: 'https://echarts.apache.org/zh/images/logo.png?_v_=20200710_1',
+                    "width": 100,
+                    "height": 30,
+                    "crossOrigin": "anonymous"
+                }
             }
         })
         function download(){
