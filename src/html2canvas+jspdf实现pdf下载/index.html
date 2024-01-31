@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载PDF</title>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/html2canvas/1.4.1/html2canvas.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jspdf/2.5.1/jspdf.umd.js"></script> -->
+    <script src="../js/html2canvas.js"></script>
+    <script src="../js/jspdf.js"></script>
+    <script src="../js/echarts.js"></script>
+</head>
+<body>
+    <button onclick="download()">下载PDF</button>
+    <div id="container">
+        <h1>canvas元素</h1>
+        <div id="charts" style="width:400px;height:300px"></div>
+        <h1>本地图片</h1>
+        <img src="./1.png" alt="">
+        <h1>远程图片</h1>
+        <img src="https://img.alicdn.com/imgextra/i2/O1CN01MI9N4F1wgOm1IlgfW_!!6000000006337-2-tps-36-36.png" alt="">
+    </div>
+    <!-- 截图的照片 -->
+    <img id="preview" src="" alt="">
+    <script>
+        const charts = echarts.init(document.getElementById('charts'));
+        charts.setOption({
+            title:{
+                text:'柱状图',
+            },
+            legend:{	//图例
+                data:['销量']
+            },
+            xAxis:{	//x轴的配置
+                data:['衬衫','羊毛衫','雪纺衫','裤子','高跟鞋','袜子'],
+            },
+            yAxis:{	//y轴的配置
+            },
+            series:{	//系列列表
+                name:'销量',
+                type:'bar',	//图表的类型
+                data:[5,20,36,10,19,24]	//图表的数据
+            }
+        })
+        function download(){
+            html2canvas(document.getElementById('container'),{
+                allowTaint: true,
+                scale: 1,
+                useCORS: true,
+            }).then(canvas => {
+                const {jsPDF} = jspdf;
+                console.log(canvas);
+                const contentWidth = canvas.width;
+                const contentHeight = canvas.height;
+                // 将canvas转为base64图片
+                const pageData = canvas.toDataURL("image/jpeg", 1.0);
+                const preview = document.getElementById('preview');
+                preview.src = pageData;
+                const pdfX = ((contentWidth) / 2) * 0.75;
+                const pdfY = ((contentHeight) / 2) * 0.75;
+                // 初始化jspdf 第一个参数方向：默认''时为纵向，第二个参数设置pdf内容图片使用的长度单位为pt，第三个参数为PDF的大小，单位是pt
+                const PDF = new jsPDF("", "pt", [pdfX,pdfY]);
+                // 将内容图片添加到pdf中，因为内容宽高和pdf宽高一样，就只需要一页，位置就是 0,0
+                PDF.addImage(pageData, "jpeg", 0, 0, pdfX, pdfY);
+                PDF.save("download.pdf");
+            })
+        }
+    </script>
+</body>
+</html>
