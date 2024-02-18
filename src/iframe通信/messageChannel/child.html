@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>child</title>
+</head>
+<body>
+    <h1>child</h1>
+    <script>
+        window.onmessage = evt => {
+            if(evt.ports && evt.ports.length){
+                window.port2 = evt.ports[0];
+
+                port2.onmessage = e => {
+                    console.log("port2 get message: ", e)
+                }
+
+                port2.postMessage('efg');
+            }
+        }
+    </script>
+</body>
+</html>

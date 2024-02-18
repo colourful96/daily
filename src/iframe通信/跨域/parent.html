@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>parent</title>
+</head>
+<body>
+    <iframe
+        id="testIframe"
+        name="test"
+        src="http://127.0.0.1:5500/src/iframe%E9%80%9A%E4%BF%A1/%E8%B7%A8%E5%9F%9F/child.html"
+    ></iframe>
+
+    <script>
+        const iframe = document.getElementById('testIframe');
+        iframe.onload = function (){
+            window.test.window.postMessage('hello,child', 'http://127.0.0.1:5500')
+        }
+
+        window.addEventListener('message', e => {
+            console.log(e, 'e');
+        },false)
+    </script>
+</body>
+</html>

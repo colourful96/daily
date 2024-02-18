@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>child</title>
+</head>
+<body>
+    <h1>child</h1>
+    <script>
+        window.addEventListener('message', function(data){
+            if(data.origin === 'http://localhost:63342'){
+                console.log(data.origin);
+                console.log(data.data);
+            }
+        })
+        // 报错，可能是http协议的原因
+        // window.parent.postMessage('hello,parent', 'http://127.0.0.1:63342');
+    </script>
+</body>
+</html>

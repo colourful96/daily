@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>parent</title>
+</head>
+<body>
+    <iframe
+            id="testIframe"
+            name="test"
+            src="child.html"
+    ></iframe>
+    <script>
+        const channel = new MessageChannel();
+        const port1 = channel.port1;
+
+        window.port1 = port1;
+        port1.onmessage = function(e){
+            console.log('port1接收到消息', e);
+        }
+        const frame = document.getElementById('testIframe').contentWindow;
+        frame.addEventListener('load', function (e){
+            console.log(e, 'port2 发送消息');
+            frame.postMessage('hello child','*',[channel.port2])
+        })
+    </script>
+</body>
+</html>

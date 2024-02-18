@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>parent</title>
+</head>
+<body>
+<iframe
+    id="testIframe"
+    name="test"
+    src="child.html"
+></iframe>
+    <script>
+        const iframeDom = document.getElementById('testIframe');
+        iframeDom.onload = function (){
+            const data = 'hello world';
+            // 调用子页面方法
+            // iframeDom.contentWindow.childConsole(data);
+            window.test.window.childConsole(data);
+        }
+
+        function parentConsole(data){
+            console.log('parentConsole', data);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>child</title>
+</head>
+<body>
+    <h1>child</h1>
+    <script>
+        function childConsole(data){
+            console.log('childConsole', data);
+        }
+
+        // 调用父页面方法
+        const data = 'hello parent';
+        window.top.parentConsole(data);
+        window.parent.parentConsole(data);
+    </script>
+</body>
+</html>
