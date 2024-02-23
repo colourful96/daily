@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Excel下载</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <button onclick="download()">下载Excel</button>
+    <script>
+        const tempData = [
+            ['排名', '企业名称', '分值', '评级'],
+            ['1', '龙飞凤舞', 30, 'A'],
+            ['2', '大吉大利', 25, 'B'],
+            ['3', '吉祥如意', 40, 'C']
+        ];
+        console.log(XLSX);
+        const worksheet = XLSX.utils.aoa_to_sheet(tempData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+        function download() {
+            // 导出 Excel 文件
+            XLSX.writeFile(workbook, 'data.xlsx');
+        }
+    </script>
+</body>
+</html>
