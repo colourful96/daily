@@ -15,3 +15,4 @@
 13. [发布订阅模式](src/发布订阅模式/observer.js)
 14. [ES5实现ES6构造函数](src/ES5实现ES6构造函数/index.js)
 15. [pdf下载](src/html2canvas+jspdf实现pdf下载/index.html)
+16. [requestAnimationFrame面板收起](src/openAnimated/index.html)

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>openAnimated</title>
+    <style>
+        .panel {
+            width: 200px;
+            background: #ffe7f9;
+        }
+
+        .title {
+            cursor: pointer;
+        }
+
+        .children {
+        }
+        .transition > .children{
+            transition-duration: 300ms;
+            transition-property: height, opacity, transform;
+            transition-timing-function: cubic-bezier(0.2, 0.6, 0.35, 1);
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .closed {
+            > .children {
+                transform: translateY(-7px);
+                opacity: 0;
+            }
+            &:not(.transition) > .children {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <div class="title">收起/展开面板</div>
+        <div class="children">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+        </div>
+    </div>
+    <script>
+        let _closed = false;
+        const domElement = document.getElementsByClassName('panel')[0];
+        const title = document.getElementsByClassName('title')[0];
+        const children = document.getElementsByClassName('children')[0];
+        title.addEventListener('click', openAnimated, false)
+
+        function openAnimated() {
+            _closed = !_closed;
+            requestAnimationFrame(() => {
+                const initialHeight = children.clientHeight;
+                children.style.height = initialHeight + 'px';
+
+                domElement.classList.add('transition');
+                const onTransitionEnd = e => {
+                    if(e.target !== children) return;
+                    children.style.height = '';
+                    domElement.classList.remove('transition');
+                    children.removeEventListener('transitionend', onTransitionEnd);
+                }
+
+                children.addEventListener('transitionend', onTransitionEnd);
+
+                const targetHeight = _closed ? 0 : children.scrollHeight;
+
+                domElement.classList.toggle('closed', _closed);
+
+                requestAnimationFrame(() => {
+                    children.style.height = targetHeight + 'px';
+                })
+            })
+        }
+    </script>
+</body>
+</html>
