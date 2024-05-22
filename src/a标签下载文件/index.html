@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载文件</title>
+</head>
+<body>
+    <button id="download">下载</button>
+    <!-- <a 
+        href="地址"
+        download=""
+    >下载</a> -->
+    <script>
+        const button = document.getElementById('download');
+        const url = '地址';
+        button.onclick = function(){
+            const a = document.createElement('a');
+            a.href = url;
+            a.download='';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        }
+    </script>
+</body>
+</html>
