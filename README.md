@@ -18,3 +18,4 @@
 16. [requestAnimationFrame面板收起](src/openAnimated/index.html)
 17. [设置滚动条在左侧和上侧](src/CSS设置滚动条位置在上侧和左侧/index.html)
 18. [复制内容到剪切板](src/复制内容到剪切板/index.html)
+19. [处理并发请求](src/接口并发处理/index.html)

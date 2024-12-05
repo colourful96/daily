@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接口并发处理</title>
+</head>
+<body>
+  <script>
+    const getHeroDetail = id => {
+      return fetch(`https://game.gtimg.cn/images/lol/act/img/js/hero/${id}.js`).then(res => res.json());
+    }
+    // 请求分解为chunk，依次请求每个chunk
+    function method1(result){
+      function chunkArray(arr, size) {
+        let result = [];
+        let i = 0;
+
+        // 使用 while 循环，每次从原数组中取出 'size' 个元素，放入新数组
+        while (i < arr.length) {
+          result.push(arr.slice(i, i + size));
+          i += size;
+        }
+
+        return result;
+      }
+      const requests = [];
+      result.hero.forEach(h => {
+        requests.push(getHeroDetail(h.heroId));
+      })
+
+      const chunkRequest = chunkArray(requests, 5);
+      chunkRequest.forEach(chunk => {
+        Promise.all(chunk).then(resp => {
+          console.log(resp, 'resp')
+        })
+      })
+    }
+
+    RequestQueue.prototype.maxCount = 5;
+    RequestQueue.prototype.queue = [];
+    RequestQueue.prototype.running = 0;
+    RequestQueue.prototype.add = function(request){
+      this.queue.push(request);
+      this.execQueue();
+    }
+    RequestQueue.prototype.execQueue = function(){
+      if(this.running < this.maxCount && this.queue.length > 0){
+        this.running ++;
+        const request = this.queue.shift();
+        Promise.resolve(request).then(resp => {
+          console.log(resp,'resp')
+        }).finally(res => {
+          this.running --;
+          this.execQueue();
+        })
+      }
+    }
+    function RequestQueue(maxCount){
+        this.maxCount = maxCount;
+    }
+    // 通过队列的方式
+    function method2(result){
+      const rq = new RequestQueue(10);
+      result.hero.forEach(h => {
+        rq.add(getHeroDetail(h.heroId));
+      })
+    }
+
+    const getHeroes = () => {
+      return fetch(`https://game.gtimg.cn/images/lol/act/img/js/heroList/hero_list.js`).then(res => res.json()).then(result => {
+        console.log(result);
+        // method1(result);
+        method2(result);
+        // 使用p-all或者p-queue库处理并发请求  axios库本身并不支持并发处理
+      })
+    }
+    window.onload = function () {
+      getHeroes();
+    }
+  </script>
+</body>
+</html>
