@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>取消请求</title>
+</head>
+<body>
+<div>
+    <button id="download">下载视频</button>
+    <button id="cancel">取消下载</button>
+</div>
+<script>
+    const download = document.getElementById('download');
+    const cancel = document.getElementById('cancel');
+    const url = 'sintel.mp4';
+    let controller;
+
+    download.addEventListener('click', fetchVideo);
+    cancel.addEventListener('click', function(){
+        if(controller){
+            controller.abort();
+            console.log('download abort');
+        }
+    })
+
+    function fetchVideo() {
+        controller = new AbortController();
+        const signal = controller.signal;
+        fetch(url, {signal}).then(response => {
+            console.log(response, 'response')
+            if (response.status === 200) {
+                return response.blob()
+            } else {
+                throw new Error('fetch error')
+            }
+        }).then(blob => {
+            const video = document.createElement('video');
+            video.setAttribute('controls', '');
+            video.src = URL.createObjectURL(blob);
+            document.body.appendChild(video);
+        }).catch(e => {
+            // 需要在此处捕获下错误，否则取消请求时会报错
+            console.log(e,'e')
+        })
+    }
+</script>
+</body>
+</html>
