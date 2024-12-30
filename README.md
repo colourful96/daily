@@ -20,3 +20,4 @@
 18. [复制内容到剪切板](src/复制内容到剪切板/index.html)
 19. [处理并发请求](src/接口并发处理/index.html)
 20. [取消http请求](src/取消http请求/index.html)
+21. [在Excel中插入图片并下载](src/在Excel中插入图片并下载/index.html)
