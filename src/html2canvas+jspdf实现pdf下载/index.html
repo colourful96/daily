@@ -9,9 +9,15 @@
     <script src="../js/html2canvas.js"></script>
     <script src="../js/jspdf.js"></script>
     <script src="../js/echarts.js"></script>
+    <style>
+        .mulPage{
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
     <button onclick="download()">下载PDF</button>
+    <button onclick="downloadCustomPage()">下载PDF(自定义页面)</button>
     <div id="container">
         <h1>canvas元素</h1>
         <div id="charts" style="width:400px;height:300px"></div>
@@ -19,6 +25,23 @@
         <img src="./1.png" alt="">
         <h1>远程图片</h1>
         <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.K-4RqDC6zFrpAG31ayDDOgHaHa?rs=1&pid=ImgDetMain" alt="" crossOrigin="anonymous">
+    </div>
+    <div id="customDownload">
+        <div class="mulPage">
+            mulPage1
+        </div>
+        <div class="mulPage">
+            mulPage2
+        </div>
+        <div class="mulPage">
+            mulPage3
+        </div>
+        <div class="mulPage">
+            mulPage4
+        </div>
+        <div class="mulPage">
+            mulPage5
+        </div>
     </div>
     <!-- 截图的照片 -->
     <img id="preview" src="" alt="">
@@ -77,6 +100,46 @@
                 PDF.save("download.pdf");
             })
         }
-    </script>
+
+        // 当内容过长，截图会截不完，而且pdf一页放不下，可自定义页面插入，分多个容器截图
+        function downloadCustomPage(){
+            const doms = Array.from(document.querySelectorAll('.mulPage')); 
+            async function captureToImage(element) {
+                const canvas = await html2canvas(element,{
+                    allowTaint: true,
+                    scale: 2,
+                    useCORS: true,
+                });
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                return { imgData, width: canvas.width, height: canvas.height };
+            }
+
+            async function generatePDF() {
+                const { jsPDF } = window.jspdf;
+                const { width, height } = await captureToImage(doms[0]);
+                const pdfX = ((width) / 2) * 0.75;
+                const pdfY = ((height) / 2) * 0.75;
+                const pdf = new jsPDF('','pt',[pdfX, pdfY]);
+            
+                for (let i = 0; i < doms.length; i++) {
+                    const { imgData, width, height } = await captureToImage(doms[i]);
+
+                    // Convert width and height from pixels to points (1 point = 1/72 inch)
+                    const pdfWidth = ((width) / 2) * 0.75;
+                    const pdfHeight = ((height) / 2) * 0.75;
+
+                    if (i > 0) {
+                        pdf.addPage([pdfWidth, pdfHeight]);
+                    } else {
+                        pdf.setPage(i + 1);
+                    }
+
+                    pdf.addImage(imgData, 'jpeg', 0, 0, pdfWidth, pdfHeight);
+                }
+                pdf.save('output.pdf');
+            }
+            generatePDF();
+        }
+   </script>
 </body>
 </html>
