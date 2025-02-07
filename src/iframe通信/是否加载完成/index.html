@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const iframeLoader = (iframe) => {
+        return new Promise((resolve, reject) => {
+            const cloneWindow = iframe.contentWindow; // 获取window对象
+
+            // 如果没有，说明创建失败
+            if (!cloneWindow) {
+                return reject(`No window assigned for iframe`);
+            }
+
+            const documentClone = cloneWindow.document;
+
+            // 同时监听 window 和 iframe 的 onload 事件
+            cloneWindow.onload = iframe.onload = () => {
+                cloneWindow.onload = iframe.onload = null; // 清除监听器
+                const interval = setInterval(() => {
+                    if (documentClone.body.childNodes.length > 0 && documentClone.readyState === 'complete') {
+                        clearInterval(interval);
+                        resolve(iframe);
+                    }
+                }, 50);
+            };
+        });
+    };
+    </script>
+</body>
+</html>
