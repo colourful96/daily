@@ -2,7 +2,7 @@ import './App.css'
 import ScreenRecorder from "./components/ScreenRecorder.tsx";
 
 function App() {
-    const appId = "cli_a85cdbee0ff8d013"; // 替换
+    const appId = ""; // 替换
     // const redirectUri = encodeURIComponent("http://127.0.0.1:3000"); // Vite 默认端口 5173
     const redirectUri = "http://127.0.0.1:3000";
 
@@ -39,7 +39,6 @@ function App() {
     return (
         <>
             <div>
-                <ScreenRecorder />
                 <h2>飞书鉴权</h2>
                 <a href={`https://open.feishu.cn/open-apis/authen/v1/index?app_id=${appId}&redirect_uri=${redirectUri}`} target={'_blank'}>使用飞书登录</a>
                 {code && (

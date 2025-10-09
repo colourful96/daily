@@ -9,8 +9,8 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-const APP_ID = "cli_a85cdbee0ff8d013";       // 替换成飞书应用的
-const APP_SECRET = "ICJCaWXIjkmCAGPsN8pXBbNDVj6kG0oz"; // 替换成飞书应用的
+const APP_ID = "";       // 替换成飞书应用的
+const APP_SECRET = ""; // 替换成飞书应用的
 
 // 处理 code -> access_token
 app.post("/api/auth/feishu", async (req, res) => {
